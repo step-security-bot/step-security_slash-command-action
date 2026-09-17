@@ -52,11 +52,6 @@ export class CommandHandler {
       return false;
     }
 
-    debug("Passing the command details along for any other actions to use");
-
-    setOutput("command-name", commandResults.name);
-    setOutput("command-arguments", commandResults.arguments as string);
-
     debug("Checking if user has the required access to the repo for this command");
 
     const actorPermissionLevel = await this.permissionLevel();
@@ -66,6 +61,11 @@ export class CommandHandler {
 
       return false;
     }
+
+    debug("Passing the command details along for any other actions to use");
+
+    setOutput("command-name", commandResults.name);
+    setOutput("command-arguments", commandResults.arguments as string);
 
     debug("Adding a reaction to the comment if enabled");
 

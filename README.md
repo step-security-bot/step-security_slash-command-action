@@ -31,7 +31,10 @@ jobs:
           allow-edits: "false"
           permission-level: admin
       - name: Act on the command
-        run: echo "The command was '${{ steps.command.outputs.command-name }}' with arguments '${{ steps.command.outputs.command-arguments }}'"
+        env:
+          COMMAND_NAME: ${{ steps.command.outputs.command-name }}
+          COMMAND_ARGS: ${{ steps.command.outputs.command-arguments }}
+        run: echo "The command was '$COMMAND_NAME' with arguments '$COMMAND_ARGS'"
 ```
 
 ## Options
